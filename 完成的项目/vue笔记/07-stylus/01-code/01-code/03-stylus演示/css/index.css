@@ -1,0 +1,14 @@
+@import "./reset.css";
+@import "./mixins.styl";
+
+.app {
+  width: 300px;
+  height: 200px;
+  background-color: #008000;
+  border: 1px solid #f00;
+  color: #ff0;
+}
+.app p {
+  color: #00f;
+  font-size: 30px;
+}

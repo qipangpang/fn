@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style type="text/css">
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    div{
+      width:300px;
+      height:200px;
+      border:1px solid red;
+      left:100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="dv"></div>
+  <script type="text/javascript">
+    function my$(id){
+      return document.getElementById(id)
+    }
+    window.onload=function(){
+      // 获取当前div的left值
+      // 这样是获取不到的
+      // console.log(my$('dv').style.left)
+
+      // 两种方式
+      // console.log(my$('dv').currentStyle.left) // IE支持,谷歌和火狐不支持----数字类型的值
+      // console.log(window.getComputedStyle(my$('dv'),null).left) // 谷歌和火狐支持, IE不支持---字符串类型的值
+      console.log(getStyle(my$('dv'),'left'))
+    }
+
+    // 获取某个元素的样式的属性的值
+    // element-----attr
+    function getStyle(element,attr){
+      return window.getComputedStyle?window.getComputedStyle(element,null)[attr]:element.currentStyle[attr]
+    }
+
+
+    // var obj={
+    //   // 属性和值的关系
+    //   sayHi:function(){},
+    
+    // }
+    // // obj对象中有没有sayHi这个方法---有没有sayHi属性
+    // if(obj.sayHi)
+  </script>
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    // function my$(id) {
+    //   return document.getElementById(id)
+    // }
+    // function getStyle(element,attr){
+    //   return window.getComputedStyle?window.getComputedStyle(element,null)[attr]:element.currentStyle[attr]
+    // }
+    // window.onload = function () {
+    //   // console.log(my$('dv').style.left)
+    //   // console.log(my$('dv').offsetLeft) // 100 数字类型
+    //   // console.log(my$('dv').currentStyle['left']) // IR浏览器支持,谷歌和火狐不支持
+    //   // console.log(window.getComputedStyle(my$('dv'),null)['left']) // 100px 字符串类型  谷歌和火狐支持,IE不支持
+    //   console.log(getStyle(my$('dv'),'left'))
+    // }
+  </script>
+</body>
+
+</html>

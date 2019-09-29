@@ -1,0 +1,13 @@
+@import "./reset.css";
+html,
+body {
+  overflow: hidden;
+}
+html .cls,
+body .cls {
+  width: 300px;
+  height: 200px;
+  border: 1px solid #f00;
+  background-color: #008000;
+  font: 30px;
+}

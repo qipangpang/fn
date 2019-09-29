@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>玉树临风美少年，揽镜自顾夜不眠 </title>
+  <style type="text/css">
+    div {
+      width: 200px;
+      height: 100px;
+      border: 1px solid red;
+    }
+
+    p {
+      width: 50px;
+      height: 20px;
+      border: 1px solid green;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="btn">按钮</button>
+  <div id="dv1">
+    <p id="p1"></p>
+  </div>
+  <script type="text/javascript">
+
+    var arr = [my$('dv1'), my$('p1')]
+    arr.forEach(obj=>{
+      // 自己调用系统的
+      obj.addEventListener('click',function (e) {
+        // 1---捕获阶段,2---目标阶段---3冒泡阶段
+        console.log(e.eventPhase)
+        },false)
+    })
+
+
+
+
+    // 为按钮绑定多个事件
+    // 为某个元素注册事件
+    // element,事件类型,回调函数
+    // eventName---没有on 
+    function addEventListener(element, eventName, fn) {
+      // 浏览器是否支持addEventListener
+      if (element.addEventListener) {
+        element.addEventListener(eventName, fn, false)
+        // 浏览器是否支持attachEvent
+      } else if (element.attachEvent) {
+        element.attachEvent('on' + eventName, fn)
+      } else {
+        // 浏览器都不支持
+        // 注册一个事件
+        element['on' + eventName] = fn
+      }
+    }
+    // 移除元素的绑定的事件----元素---事件名字---回调函数的名字
+    function removeEventListener(element, eventName, fnName) {
+      if (element.removeEventListener) {
+        element.removeEventListener(eventName, fnName, false)
+      } else if (element.detachEvent) {
+        element.detachEvent('on' + eventName, fnName)
+      } else {
+        element['on' + eventName] = null
+      }
+    }
+
+    function my$(id) {
+      return document.getElementById(id)
+    }
+    function f1() {
+      console.log('哈哈,我又变帅了')
+    }
+    function f2() {
+      console.log('其实,我们都有一颗纯洁的心')
+    }
+    addEventListener(my$('btn'), 'click', f1)
+    addEventListener(my$('btn'), 'click', f2)
+    removeEventListener(my$('btn'), 'click', f1)
+
+    function setInnerText(element,text){
+      if(element.textContent){
+         element.textContent=text
+      }else{
+         element.innerText=text
+      }
+    }
+    function getInnerText(element){
+      if(element.textContent){
+        return element.textContent
+      }else{
+        return element.innerText
+      }
+    }
+
+    var evtObj={
+      getEvent:function(e){
+        return window.event||e
+      },
+      getClientX:function(e){
+        return this.getEvent(e).clientX
+      },
+      getClientY:function(e){
+        return this.getEvent(e).clientY
+      },
+      getScrollLeft:function(){
+        return window.pageXOffset||document.documentElement.scrollLeft||document.body.scrollLeft||0
+      },
+      getScrollTop:function(){
+        return window.pageYOffset||document.documentElement.scrollTop||document.body.scrollTop||0
+      },
+      getPageX:function(e){
+        return this.getEvent(e).pageX?this.getEvent(e).pageX:this.getClientX(e)+this.getScrollLeft()
+      },
+      getPageY:function(e){
+        return this.getEvent(e).pageY?this.getEvent(e).pageY:this.getClientY(e)+this.getScrollTop()
+      }
+    }
+
+    // var arrs=[my$('dv1'),my$('p1')]
+    // arrs.forEach(obj=>{
+    //   obj.addEventListener('click',function(e){
+    //     console.log(e.eventPhase) // 1捕获,2目标,3冒泡
+    //   },false)
+    // })
+
+    // // 绑定事件
+    // function addEventListener(element, eventName, fn) {
+    //   if (element.addEventListener) {
+    //     element.addEventListener(eventName, fn, false)
+    //   } else if (element.attachEvent) {
+    //     element.attachEvent('on' + eventName, fn)
+    //   } else {
+    //     element['on' + eventName] = fn
+    //   }
+    // }
+    // // 解绑事件
+    // function removeEventListener(element, eventName, fnName) {
+    //   if (element.removeEventListener) {
+    //     element.removeEventListener(eventName, fnName, false)
+    //   } else if (element.detachEvent) {
+    //     element.detachEvent('on' + eventName, fnName)
+    //   } else {
+    //     element['on' + eventName] = null
+    //   }
+    // }
+    // function my$(id) {
+    //   return document.getElementById(id)
+    // }
+    // function f1() {
+    //   console.log('第一个事件')
+    // }
+    // function f2() {
+    //   console.log('第二个事件')
+    // }
+    // addEventListener(my$('btn'), 'click', f1)
+    // addEventListener(my$('btn'), 'click', f2)
+    // // 移除事件
+    // removeEventListener(my$('btn'), 'click', f1)
+  </script>
+</body>
+
+</html>

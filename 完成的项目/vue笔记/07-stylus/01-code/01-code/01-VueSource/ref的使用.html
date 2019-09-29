@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>玉树临风美少年，揽镜自顾夜不眠 </title>
+  <script type="text/javascript" src="./js/vue.js"></script>
+  <link rel="stylesheet" type="text/css" href=""/>
+  
+</head>
+<body>
+  <div id="app">
+      <button @click="handleClick">改变p标签中的文本内容</button>
+      <p ref="p1">这是一条神奇的天路</p>
+  </div>
+  
+  <script type="text/javascript">
+  const vm = new Vue({
+    el:'#app',
+    data:{
+      msg:'哈哈'
+    },
+    methods: {
+      handleClick(){
+       // 在Vue中通过ref操作DOM元素
+       this.$refs.p1.innerHTML='哈哈,我又变帅了'
+      }
+    }
+  })
+    
+  </script>
+</body>
+</html>

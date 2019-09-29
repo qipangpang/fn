@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				width: 8rem;
+				height: 8rem;
+				background: pink;
+			}
+
+			/*
+				等比显示页面
+			*/
+		</style>
+	</head>
+
+	<body>
+		<div id="box"></div>
+	</body>
+	<script type="text/javascript">
+		document.addEventListener('touchstart',function(event){
+			event.preventDefault();
+		})
+//	获取屏幕宽度
+//		var width = document.documentElement.clientWidth;
+//		var htmlNode = document.getElementsByTagName('html')[0];
+//		var htmlNode = document.querySelector('html');
+//		htmlNode.style.fontSize = width + 'px';
+//        	获取屏幕宽度
+		!(function () {
+            var width = document.documentElement.clientWidth;
+            var styleNode = document.createElement('style');
+            styleNode.innerHTML = 'html{font-size: ' + width/16 + 'px;}'
+            document.head.appendChild(styleNode);
+		})();
+//   10  16  20     7.5
+	</script>
+</html>

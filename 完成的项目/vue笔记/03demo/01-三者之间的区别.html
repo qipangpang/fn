@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>玉树临风美少年，揽镜自顾夜不眠 </title>
+
+</head>
+
+<body>
+  <fieldset>
+    <legend>less： 标准的css语法 ，有花括号和冒号</legend>
+    h1 {<br>
+    color: red;<br>
+    }<br>
+  </fieldset>
+  <fieldset>
+    <legend>sass： 当然也可以写成上面那样 同时也可以不写花括号</legend>
+    h1<br>
+    &nbsp;&nbsp;color: red<br>
+  </fieldset>
+  <fieldset>
+    <legend>stylus： 花括号和冒号都可以不写 比较自由</legend>
+    h1<br>
+    &nbsp;&nbsp;color red<br>
+  </fieldset>
+
+  <fieldset>
+    <legend>变量上的差异Less 变量都是用@开头的</legend>
+    @maincolor : red;<br>
+    body {<br>
+    &nbsp;&nbsp;color: @maincolor;<br>
+    }<br>
+  </fieldset>
+
+  <fieldset>
+    <legend>sass变量必须是以$开头</legend>
+    $maincolor : red;<br>
+    body {<br>
+    &nbsp;&nbsp;color: $maincolor;<br>
+    }<br>
+
+  </fieldset>
+
+
+  <h3>stylus的变量就没有那么多限制 可以是 $，也可以是别的字符,建议使用$</h3>
+  <h4>嵌套写法相同,运算符也相同</h4>
+  <fieldset>
+    <legend></legend>
+    body {<br>
+    margin: (20px/2);<br>
+    top: 20px + 80px;<br>
+    right: 100 * 20%;<br>
+    }<br>
+  </fieldset>
+
+  <fieldset>
+    <legend>继承extend,sass可通过@extend来实现代码组合声明</legend>
+    .message {<br>
+    &nbsp;&nbsp;border: 1px solid #ccc;<br>
+    &nbsp;&nbsp;padding: 10px;<br>
+    &nbsp;&nbsp;color: #333;<br>
+    }<br>
+    .success {<br>
+    &nbsp;&nbsp;@extend .message;<br>
+    &nbsp;&nbsp;border-color: green;<br>
+    }<br>
+  </fieldset>
+  <fieldset>
+    <legend>stylus同样也是通过@extend</legend>
+    .message {<br>
+    &nbsp;&nbsp;padding: 10px;<br>
+    &nbsp;&nbsp;border: 1px solid #eee;<br>
+    }<br>
+
+    .warning {<br>
+    &nbsp;&nbsp;@extend .message;<br>
+    &nbsp;&nbsp;color: #E2E21E;<br>
+    }<br>
+  </fieldset>
+  <fieldset>
+    <legend>而 less里的继承更像是mixin写法</legend>
+    .message {<br>
+    &nbsp;&nbsp;border: 1px solid #ccc;<br>
+    &nbsp;&nbsp;padding: 10px;<br>
+    &nbsp;&nbsp;color: #333;<br>
+    }<br>
+    .success {<br>
+    &nbsp;&nbsp;.message;<br>
+    &nbsp;&nbsp; border-color: green;<br>
+    }
+  </fieldset>
+  <fieldset>
+    <legend>混合mixin,sass的混合需要通过@include来实现</legend>
+    @mixin error($borderWidth: 2px) {<br>
+    &nbsp;&nbsp; border: $borderWidth solid #F00;<br>
+    &nbsp;&nbsp; color: #F00;<br>
+    }
+    .generic-error {<br>
+    &nbsp;&nbsp;padding: 20px;<br>
+    &nbsp;&nbsp; margin: 4px;<br>
+    &nbsp;&nbsp;@ include error(); //这里调用默认 border: 2px solid #F00;<br>
+    }<br>
+  </fieldset>
+  <fieldset>
+    <legend>less的混合</legend>
+    .error(@borderWidth: 2px) {<br>
+    &nbsp;&nbsp;border: @borderWidth solid #F00;<br>
+    &nbsp;&nbsp;color: #F00;<br>
+    }<br>
+    .generic-error {<br>
+    &nbsp;&nbsp;padding: 20px;<br>
+    &nbsp;&nbsp;margin: 4px;<br>
+    &nbsp;&nbsp;.error(); //这里调用默认 border: 2px solid #F00;<br>
+    }<br>
+  </fieldset>
+  <fieldset>
+    <legend>stylus的混合</legend>
+    error(borderWidth= 2px) {<br>
+    &nbsp;&nbsp; border: borderWidth solid #F00;<br>
+    &nbsp;&nbsp;color: #F00;<br>
+    }
+    .generic-error {<br>
+    &nbsp;&nbsp; padding: 20px;<br>
+    &nbsp;&nbsp; margin: 4px;<br>
+    &nbsp;&nbsp;error(); <br>
+    }
+  </fieldset>
+
+
+</body>
+
+</html>

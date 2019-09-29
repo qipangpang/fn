@@ -1,0 +1,34 @@
+  <!--解决点击响应延时0.3s问题-->
+    <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
+    <script>
+      if ('addEventListener' in document) {
+        document.addEventListener('DOMContentLoaded', function() {
+          FastClick.attach(document.body);
+        }, false);
+      }
+      if(!window.Promise) {
+        document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');
+      }
+      // $(document).ready(function () {
+      //取消浏览器默认行为
+      document.addEventListener('touchstart',function(event){
+        event.preventDefault();
+      }, false)
+      //点透
+      !(function () {
+        let aNodes = document.querySelectorAll('a');
+        let i = 0;
+        for (; i < aNodes.length; i++) {
+          aNodes[i].addEventListener('touchstart', function () {
+            window.location = this.href;
+          });
+        }
+      })();
+      //rem适配
+      // !(function () {
+      //   let width = document.documentElement.clientWidth;
+      //   let styleNode = document.createElement('style');
+      //   styleNode.innerHTML = 'html{font-size: ' + width / 10 + 'px !important;}';
+      //   document.head.appendChild(styleNode);
+      // })();
+    </script>

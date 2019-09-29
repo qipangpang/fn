@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=2,user-scalable=no" />
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				width: 160px;
+				height: 160px;
+				background: deeppink;
+			}
+		</style>
+		<!--
+			ui:320
+			把屏幕区域 375（414）统一变成320
+
+			1.width: 320   (安卓不兼容)
+			2.initial-scale = ???
+				放大操作   initial-scale > 1
+				设计稿为 320     目标设备的设备独立像素为375   放大多少倍才能在该设备上等比完整显示
+				initial-scale = 375/320
+		-->
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>
+	<script type="text/javascript">
+		//获取屏幕的宽度  375
+		var width = document.documentElement.clientWidth;
+//		console.log(width)
+//		设计稿宽度  公司提供的 自己不用想
+		var targetW = 320;
+//		求出比例  1.2
+		var scale = width/targetW;
+
+		var metaNode = document.querySelector('meta[name="viewport"]');
+
+        metaNode.setAttribute('content','initial-scale='+ scale +',user-scalable=no')
+		
+		
+		
+		
+		
+////		创建一个meta标签
+//		var metaNode = document.createElement('meta');
+//		metaNode.setAttribute('name','viewport');
+////		把对应比例通过meta标签 设置给页面
+//		metaNode.setAttribute('content','initial-scale='+ scale +',user-scalable=no');
+////		把准备好的meta标签放到页面的head中
+//		document.head.appendChild(metaNode);
+	</script>
+	
+</html>

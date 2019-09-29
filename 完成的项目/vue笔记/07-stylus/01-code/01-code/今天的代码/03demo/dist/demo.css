@@ -1,0 +1,15 @@
+html,
+body {
+  background-color: #008000;
+}
+html .app,
+body .app {
+  width: 200px;
+  height: 100px;
+  background-color: #ffc0cb;
+  font: 30px "全新硬笔行书简";
+}
+html .app.cls,
+body .app.cls {
+  color: #f00;
+}

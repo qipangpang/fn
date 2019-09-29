@@ -1,0 +1,66 @@
+1. 把下面代码直接复制到index.html的head标签中 
+<meta name="viewport"
+    content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0 user-scalable=no">
+
+
+2.把下面代码直接复制到index.html的head标签中(该标签中还需要引入reset.css文件)
+<link rel="stylesheet" href="http://at.alicdn.com/t/font_518606_5kcf4pgw3tc.css">
+
+3.把下面代码直接复制到index.html的head标签中 
+  <!--解决移动端点击事件0.3延迟问题: 使用fastclick库-->
+  <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
+  <script>
+    if ('addEventListener' in document) {
+      document.addEventListener('DOMContentLoaded', function () {
+        FastClick.attach(document.body);
+      }, false);
+    }
+  </script>
+4.把封装的ajax代码复制到api目录中的ajax.js文件中
+import axios from 'axios'
+export default function ajax(url, data={}, method='GET') {
+  return new Promise((resolve, reject) => {
+    let promise
+    // 执行异步ajax请求
+    if(method==='GET') {
+      promise = axios.get(url, {params: data}) // params配置, 指定的是query参数
+    } else {
+      promise = axios.post(url, data)
+    }
+    promise.then(
+      response => {  // 如果成功了, 调用resolve()
+        resolve(response.data)
+      },
+      error => { // 如果失败了, 不调用reject(), 而是提示错误信息
+        alert('请求异常: ' + error.message)
+      }
+    )
+  })
+}
+
+
+5. 在api目录中的index.js 写接口
+"longitude": "116.36867",
+"latitude": "40.10038",
+6.在App.vue中测试
+import {reqAddress} from './api'
+  async mounted () {
+    const result=await reqAddress("116.36867", "40.10038")
+    if(result.code===0){
+      console.log(result.data)
+    }
+  }
+此时出现跨域问题----下面是报错信息：
+msite:1 Access to XMLHttpRequest at 'http://localhost:5000/position/40.10038,116.36867' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+解决:去config目录中的index.js中进行配置-----复制下面代码
+proxyTable: {
+  '/api': { // 匹配所有以 '/api'开头的请求路径
+    target: 'http://localhost:3000', // 代理目标的基础路径
+    changeOrigin: true, // 支持跨域
+    pathRewrite: {// 重写路径: 去掉路径中开头的'/api'
+      '^/api': ''
+    }
+  }
+}
+
+
